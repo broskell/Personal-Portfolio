@@ -51,10 +51,27 @@ body {
     color: #ffffffb3;
 }
 
+button {
+    color: white;
+    background-color: black;
+    border: 1px solid white;
+    margin-top: 40px;
+    height: 40px;
+    width: 130px;
+    border-radius: 20px;
+}
+
+button:hover {
+    cursor: pointer;
+    color: black;
+    background-color: white;
+    transition: 1.5s;
+}
+
 #contacts {
     display: flex;
     gap: 40px;
-    margin-top: 80px;
+    margin-top: 60px;
     margin-bottom: 200px;
     color: grey;
 }
