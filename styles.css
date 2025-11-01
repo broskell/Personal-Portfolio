@@ -192,8 +192,9 @@ a:hover {
 
 #skills-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    margin: 0px 100px 0px 100px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 80px;
     margin-top: 40px;
 }
 
