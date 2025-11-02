@@ -6,21 +6,38 @@ body {
 
 #header {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     color: white;
+    padding: 10px 50px;
+    gap: 60px;
+    margin: 0%;
+}
+
+#header-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#header-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #hello {
+    padding-left: 7px;
     margin-bottom: 40px;
 }
 
 #name h1 {
     display: flex;
     flex-direction: column;
-    align-items: center;
     padding: 0px;
-    margin:0px;
+    margin: 0px;
     border: 0px;
     font-size: 800%;
 }
@@ -40,6 +57,7 @@ body {
 
 #role {
     margin-top: 10px;
+    padding-left: 7px;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: x-large;
     color: #ffffffb3;
@@ -47,6 +65,7 @@ body {
 
 #quotation {
     margin-top: 30px;
+    padding-left: 7px;
     font-size: 135%;
     color: #ffffffb3;
 }
@@ -56,6 +75,7 @@ button {
     background-color: black;
     border: 2px solid white;
     margin-top: 40px;
+    margin-left: 8px;
     height: 50px;
     width: 150px;
     border-radius: 20px;
@@ -71,8 +91,7 @@ button:hover {
 #contacts {
     display: flex;
     gap: 40px;
-    margin-top: 70px;
-    margin-bottom: 15px;
+    margin: 70px 0px 15px 12px;
     color: grey;
 }
 
@@ -82,6 +101,75 @@ a {
 
 a:hover {
     filter: brightness(80%);
+}
+
+.code-window {
+    background: rgba(30, 30, 30, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 600px;
+}
+
+.code-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.code-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.dot-red { 
+    background-color: tomato; 
+}
+.dot-yellow { 
+    background-color: gold; 
+}
+.dot-green { 
+    background-color: rgb(47, 255, 47); 
+}
+
+.code-title {
+    margin-left: 15px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+}
+
+.code-content {
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+    padding: 20px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #ccc;
+    overflow-x: auto;
+}
+
+.code-keyword { 
+    color: #fff;
+}
+.code-const { 
+    color: #ddd; 
+}
+.code-string { 
+    color: #bbb; 
+}
+.code-number { 
+    color: #999; 
+}
+.code-property { 
+    color: #aaa; 
+}
+.code-function { 
+    color: #ccc; 
 }
 
 #down_arrow {

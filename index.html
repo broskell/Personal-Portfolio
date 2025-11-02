@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,50 +8,90 @@
     <link rel="stylesheet" href="styles.css">
     <script src="script.js"></script>
 </head>
+
 <body>
-    <div id = "header">
-        <div id = "hello">
-            <p>Hello, I'm</p>
+    <div id="header">
+        <div id="header-left">
+            <div id="hello">
+                <p>Hello, I'm</p>
+            </div>
+
+            <div id="name">
+                <h1>Saathvik</h1>
+                <h1>Kellampalli</h1>
+            </div>
+
+            <div id="role">
+                <h2>A Undergraduate at IITJ x LST</h2>
+            </div>
+
+            <div id="quotation">
+                <p>Building strong foundations in technology to shape a smarter future.</p>
+            </div>
+
+            <div>
+                <button>Download CV</button>
+            </div>
+
+            <div id="contacts">
+                <a href="https://github.com/broskell"><img src="github_logo.png" id="github"
+                        style="height: 40px; width: 40px; background-color: white; border-radius: 100%;"></a>
+                <a href="https://www.linkedin.com/in/kellampalli-saathvik-354799360/?originalSubdomain=in"><img
+                        src="linkedin_logo.png" id="linkedin"
+                        style="height: 40px; width: 40px; filter: brightness(10);"></a>
+                <a href="mailto:saathvik.kp@gmail.com"><img src="mail_logo.png" id="mail"
+                        style="height: 40px; width: 40px; background-color: white; border-radius: 100%;"></a>
+            </div>
         </div>
 
-        <div id = "name">
-        <h1>Saathvik</h1>
-        <h1>Kellampalli</h1>
+        <div id="header-right">
+            <div class="code-window">
+                <div class="code-header">
+                    <span class="code-dot dot-red"></span>
+                    <span class="code-dot dot-yellow"></span>
+                    <span class="code-dot dot-green"></span>
+                    <span class="code-title">script.js</span>
+                </div>
+                
+                <pre class="code-content">
+<span class="code-const">const</span> profile = {
+    <span class="code-property">name</span>: <span class="code-string">'Saathvik Kellampalli'</span>,
+    <span class="code-property">title</span>: <span class="code-string">'Student | Tech Enthusiast'</span>,
+    <span class="code-property">skills</span>: [
+        <span class="code-string">'Python'</span>, <span class="code-string">'JavaScript'</span>, <span class="code-string">'HTML/CSS'</span>,
+        <span class="code-string">'Linux'</span>, <span class="code-string">'Git'</span>, <span class="code-string">'Adobe Photoshop'</span>
+    ],
+    <span class="code-property">hardWorker</span>: <span class="code-keyword">true</span>,
+    <span class="code-property">quickLearner</span>: <span class="code-keyword">true</span>,
+    <span class="code-property">problemSolver</span>: <span class="code-keyword">true</span>,
+    <span class="code-property">hireable</span>: <span class="code-function">function</span>() {
+        <span class="code-keyword">return</span> (
+            <span class="code-keyword">this</span>.hardWorker &&
+            <span class="code-keyword">this</span>.problemSolver &&
+            <span class="code-keyword">this</span>.skills.length >= <span class="code-number">5</span>
+        );
+    }
+};
+                </pre>
+            </div>
         </div>
-
-        <div id = "role">
-            <h2>A Undergraduate at IITJ x LST</h2>
-        </div>
-
-        <div id = "quotation">
-            <p>Building strong foundations in technology to shape a smarter future.</p>
-        </div>
-
-        <div>
-            <button>Download CV</button>
-        </div>
-
-        <div id = "contacts">
-            <a href="https://github.com/broskell"><img src="github_logo.png" id = "github" style="height: 40px; height: 40px; background-color: white; border-radius: 100%;"></a>
-            <a href="https://www.linkedin.com/in/kellampalli-saathvik-354799360/?originalSubdomain=in"><img src="linkedin_logo.png" id = "linkedin" style="height: 40px; height: 40px; filter: brightness(10);"></a>
-            <a href="mailto:saathvik.kp@gmail.com"><img src="mail_logo.png" id = "mail" style="height: 40px; height: 40px; background-color: white; border-radius: 100%;"></a>
-        </div>
-
-        <img id ="down_arrow" src="down_arrow.png">
-
     </div>
 
-    <div id = "about">
-        <div id = edu_int>
+    <div style="text-align: center;">
+        <img id="down_arrow" src="down_arrow.png" alt="Scroll Down">
+    </div>
+
+    <div id="about">
+        <div id="edu_int">
             <p>ABOUT ME</p>
             <h1>Education & Interests</h1>
-            <p>Exploring the world of algorithms, open-source systems, and web technologies, I’m building the skills</p>
-            <p> to shape intelligent solutions for tomorrow’s digital landscape.</p>
+            <p>Exploring the world of algorithms, open-source systems, and web technologies, I'm building the skills</p>
+            <p>to shape intelligent solutions for tomorrow's digital landscape.</p>
         </div>
 
-        <div id = "education">
-            <h2 id = "edu-header">Education</h2>
-            <div class = "table">
+        <div id="education">
+            <h2 id="edu-header">Education</h2>
+            <div class="table">
                 <div class="edu-content">
                     <div class="edu-left">
                         <h2>BS in Applied AI & DS</h2>
@@ -113,17 +153,20 @@
             </div>
         </div>
 
-        <div id = "quote-div">
+        <div id="quote-div">
             <h2>Embracing Emerging Technologies</h2>
-            <p>Driven by curiosity and a passion for technology, I actively seek out new knowledge and hands-on experience with AI, </p>
-            <p>open-source systems, and modern web frameworks to solve real-world challenges and create impactful digital solutions.</p>
+            <p>Driven by curiosity and a passion for technology, I actively seek out new knowledge and hands-on
+                experience with AI,</p>
+            <p>open-source systems, and modern web frameworks to solve real-world challenges and create impactful
+                digital solutions.</p>
         </div>
 
         <hr id="hr">
 
-        <div id = "footer">
-            <p>&copy 2025 Saathvik Kellampalli. All rights reserved.</p>
+        <div id="footer">
+            <p>&copy; 2025 Saathvik Kellampalli. All rights reserved.</p>
         </div>
     </div>
 </body>
+
 </html>
