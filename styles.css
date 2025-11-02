@@ -150,7 +150,6 @@ a:hover {
     font-size: 14px;
     line-height: 1.6;
     color: #ccc;
-    overflow-x: auto;
 }
 
 .code-keyword { 
