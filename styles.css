@@ -33,42 +33,52 @@ body {
     margin-bottom: 40px;
 }
 
+#role {
+    margin: 0px 0px 15px 0px;
+    padding-left: 7px;
+    font-family:'Saira';
+    letter-spacing: 13px;
+    font-size: 10px;
+}
+ 
 #name h1 {
     display: flex;
     flex-direction: column;
-    padding: 0px;
-    margin: 0px;
-    border: 0px;
-    font-size: 600%;
-    font-family: 'Syne', sans-serif;
+    font-family: 'Fjalla One', sans-serif;
 }
 
-#name h1+h1{
-    color: #ffffff99;
+#first-name {
+    font-size: 1000%;
+    margin: 0;
+    padding: 0;        
+    border: 0;
+    line-height: 0.9;
+    font-family: 'Fjalla One', sans-serif;
+}
+
+#last-name {
+    font-size: 765%;
+    margin: 0;
+    padding: 0;           
+    border: 0;
+    line-height: 0.9;
+    color: rgb(200, 194, 194);
 }
 
 #name h1+h1:hover {
-    color: rgb(200, 194, 194);
-    transition: 1.2s;
+    color: #ffffff99;
+    transition: 1.5s;
 }
 
 #name:hover {
     cursor: pointer;
 }
 
-#role {
-    margin-top: 0px;
-    padding-left: 7px;
-    font-family:'Doto';
-    font-size: large;
-    color: #ffffffb3;
-}
-
 #quotation {
     margin-top: 30px;
     padding-left: 7px;
     font-size: 135%;
-    font-family: 'Doto';
+    font-family: 'Bitcount Grid Single';
     color: #ffffffb3;
 }
 
