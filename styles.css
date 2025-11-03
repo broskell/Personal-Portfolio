@@ -62,12 +62,14 @@ body {
     padding: 0;           
     border: 0;
     line-height: 0.9;
-    color: rgb(200, 194, 194);
+    color: white;;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.280);
 }
 
+
 #name h1+h1:hover {
-    color: #ffffff99;
-    transition: 1.5s;
+    color: black;
+    transition: 2.5s;
 }
 
 #name:hover {
