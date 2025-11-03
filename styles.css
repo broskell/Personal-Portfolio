@@ -57,7 +57,7 @@ body {
 }
 
 #role {
-    margin-top: 10px;
+    margin-top: 0px;
     padding-left: 7px;
     font-family:'Doto';
     font-size: large;
@@ -114,6 +114,11 @@ a:hover {
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
     width: 100%;
     max-width: 600px;
+}
+
+.code-window:hover {
+    border: 2px solid rgba(255, 255, 255, 0.601);
+    transition: 2.5s;
 }
 
 .code-header {
@@ -175,6 +180,7 @@ a:hover {
 }
 
 #down_arrow {
+    margin-top: 35px;
     height: 20px;
     width: 20px;
     margin-bottom: 150px;
@@ -215,75 +221,35 @@ a:hover {
     margin: 0px 60px 0px 60px;
 }
 
-#education h2 {
+#cat {
+    background:#ffffff11;
+    color: white;
+    font-family: monospace;
+    margin: 0px 150px 250px 150px;
+    border: 3px solid rgba(255, 255, 255, 0.084);
+    height: 200px;
+}
+
+#cat:hover {
+    border: 3px solid white;
+    transition: 2s;
+}
+
+#cat-cmd {
+    background: white;
+    color: black;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: flex-start;
-    color: white;
+    align-items: center;
+    height: 60px;
+    margin: 0%;
+    border: 0px;
+    padding: 0px 0px 0px 5px;
 }
 
-.table {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; 
-    font-size: 25px;
-    background-color: #ffffff0D;
-    border-radius: 20px;
-    margin-bottom: 40px;
-    margin-left: 20px;
-    margin-right: 20px;
-    padding: 30px 40px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    transition: all 0.4s ease;
-}
-
-.table:hover {
-    cursor: pointer;
-    transform: translateX(-15px);
-    box-shadow: 0 16px 56px rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.6);
-    transition: 1.0s;
-}
-
-#edu-header {
-    padding-left: 30px;
-}
-
-.edu-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-.edu-left {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.edu-left h2 {
-    margin: 0;
-    font-size: 28px;
-    color: white;
-}
-
-.edu-left p {
-    margin: 0;
-    font-size: 18px;
-    color: rgba(255, 255, 255, 0.6);
-}
-
-.edu-right {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 8px;
-}
-
-.edu-date, .edu-location {
-    margin: 0;
-    font-size: 16px;
-    color: rgba(255, 255, 255, 0.6);
+#cat-content {
+    font-size: large;
 }
 
 #skills {
@@ -398,4 +364,19 @@ a:hover {
     color: #ffffff66;
     font-family: sans-serif;
     font-size: smaller;
+}
+
+#fixed {
+    position: fixed;
+    bottom: 0;
+    left: 0;        
+    width: 100%;    
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center; 
+    height: 20px;        
+    margin: 0px;
+    background-color: rgba(0, 0, 0, 0.5); 
+    color: #ffffffb3;
+    font-family: monospace;    
 }
