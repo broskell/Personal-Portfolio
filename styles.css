@@ -383,7 +383,7 @@ button:hover {
     border: 1px solid rgba(169, 169, 169, 0.296);
     border-radius: 20px;
     padding: 30px;
-    margin: 0px 200px 70px 200px;
+    margin: 0px 200px 150px 200px;
 }
 
 #quote-div h2 {
@@ -400,7 +400,7 @@ button:hover {
     background-color: #ffffff1c;
     margin: 0px;
     border: 0px;
-    margin-bottom: 40px;
+    margin-bottom: 60px;
 }
 
 #contactMe {
