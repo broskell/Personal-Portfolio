@@ -92,7 +92,7 @@ body {
 
 #quotation {
     margin-top: 30px;
-    width: 500px;
+    width: 550px;
     text-align: center;
     padding-left: 7px;
     font-size: 135%;
@@ -101,8 +101,8 @@ body {
 }
 
 button {
-    color: white;
-    background-color: black;
+    color: black;
+    background-color: white;
     border: 2px solid white;
     margin-top: 20px;
     margin-left: 8px;
@@ -113,8 +113,8 @@ button {
 
 button:hover {
     cursor: pointer;
-    color: black;
-    background-color: white;
+    background-color: black;
+    color: white;
     transition: 1.5s;
 }
 
