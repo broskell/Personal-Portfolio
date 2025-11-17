@@ -475,6 +475,15 @@ textarea {
     color: black;
 }
 
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: white;
+}
+
 #footer p {
     color: #ffffff66;
     font-family: sans-serif;
