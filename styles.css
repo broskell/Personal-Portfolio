@@ -507,3 +507,116 @@ a:hover {
     color: #ffffffb3;
     font-family: monospace;
 }
+
+@media (max-width: 768px) {
+
+    body {
+        font-size: 14px;
+    }
+
+    #header {
+        padding: 20px 16px 0;
+    }
+
+    #hello {
+        text-align: center;
+        padding-left: 0;
+    }
+
+    #the {
+        text-align: center;
+        padding-left: 0;
+        letter-spacing: 3px;
+    }
+
+    #name h1 {
+        align-items: center;
+        text-align: center;
+    }
+
+    #first-name {
+        font-size: 3rem;      
+    }
+
+    #last-name {
+        font-size: 2.4rem;    
+    }
+
+    #role {
+        text-align: center;
+        padding-left: 0;
+        letter-spacing: 6px;
+        margin: 10px 0;
+    }
+
+    #quotation {
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+        margin-top: 20px;
+        font-size: 1rem;
+    }
+
+    button {
+        width: 100%;
+        max-width: 260px;
+        margin: 20px auto 0 auto;
+        display: block;
+    }
+
+    #contacts {
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    #down_arrow {
+        margin: 30px 0 40px 0;
+    }
+
+    .code-window {
+        margin: 40px 16px 80px 16px;
+        max-width: 100%;
+    }
+
+    #cat {
+        margin: 0 16px 80px 16px;
+        height: auto;
+        min-height: 200px;
+    }
+
+    #skills {
+        margin: 60px 16px;
+    }
+
+    #skills-grid {
+        margin: 0;
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    #quote-div {
+        margin: 0 16px 80px 16px;
+        padding: 24px 16px;
+    }
+
+    #contactMe {
+        margin: 40px 16px 80px 16px;
+        padding: 30px 20px;
+    }
+
+    #arrow-container {
+        margin-bottom: 80px;
+    }
+
+    #about p {
+        padding: 0 12px;
+        text-align: center;
+    }
+
+    #fixed {
+        font-size: 12px;
+        height: 32px;
+        padding: 0 8px;
+    }
+}
