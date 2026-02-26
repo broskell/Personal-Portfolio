@@ -1,490 +1,822 @@
 <!DOCTYPE html>
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Saathvik Kellampalli | UG</title>
-    <link rel="icon" href="/Assets/portfolio.jpg">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'fjalla': ['Fjalla One', 'sans-serif'],
+                        'saira': ['Saira', 'sans-serif'],
+                        'space': ['Space Mono', 'monospace'],
+                        'syne': ['Syne', 'sans-serif'],
+                        'bitcount': ['Bitcount Grid Single', 'sans-serif'],
+                    },
+                    colors: {
+                        gold: '#FFD700',
+                        'gold-dark': '#B8860B',
+                        'gold-mid': '#E6BE8A',
+                    },
+                    animation: {
+                        'pulse-gold': 'pulseGold 2s infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        pulseGold: {
+                            '0%, 100%': { boxShadow: '0 0 0 4px rgba(255,215,0,0.3), 0 0 20px rgba(255,215,0,0.5)' },
+                            '50%': { boxShadow: '0 0 0 8px rgba(255,215,0,0.2), 0 0 30px rgba(255,215,0,0.7)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-8px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Doto:wght@100..900&family=Fjalla+One&family=Saira:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@400..800&display=swap" rel="stylesheet">
-        
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Saira:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@400..800&family=Bitcount+Grid+Single:wght@100..900&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom styles that Tailwind can't easily handle */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Syne', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Gradient text on name hover */
+        #name-wrapper:hover h1 {
+            background: linear-gradient(to bottom, #FFD700, #E6BE8A, #B8860B);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: none;
+            transition: all 2.5s ease;
+        }
+
+        /* Timeline vertical line */
+        .timeline-line {
+            position: relative;
+        }
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            left: 159px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.1), rgba(255,255,255,0.3), rgba(255,255,255,0.1));
+        }
+
+        @media (max-width: 768px) {
+            .timeline-line::before {
+                left: 20px;
+            }
+        }
+
+        /* Timeline dot */
+        .timeline-dot::after {
+            content: '';
+            position: absolute;
+            right: -6px;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px rgba(255,255,255,0.2), 0 0 20px rgba(255,255,255,0.3);
+            z-index: 10;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-dot {
+                position: relative;
+                text-align: left !important;
+                padding-left: 50px !important;
+                padding-right: 0 !important;
+                width: 100% !important;
+            }
+            .timeline-dot::after {
+                left: 14px;
+                right: auto;
+            }
+        }
+
+        .timeline-dot-gold::after {
+            background: #FFD700 !important;
+            box-shadow: 0 0 0 4px rgba(255,215,0,0.3), 0 0 20px rgba(255,215,0,0.5) !important;
+            animation: pulseGoldAnim 2s infinite;
+        }
+
+        @keyframes pulseGoldAnim {
+            0%, 100% { box-shadow: 0 0 0 4px rgba(255,215,0,0.3), 0 0 20px rgba(255,215,0,0.5); }
+            50% { box-shadow: 0 0 0 8px rgba(255,215,0,0.2), 0 0 30px rgba(255,215,0,0.7); }
+        }
+
+        .timeline-content-hover {
+            transition: all 0.3s ease;
+        }
+        .timeline-content-hover:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.3);
+            transform: translateX(5px);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 2px; }
+
+        /* Contact form input fix */
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus {
+            -webkit-text-fill-color: white;
+            -webkit-box-shadow: 0 0 0px 1000px rgba(255,255,255,0.1) inset;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+
+        /* Down arrow animation */
+        #down_arrow {
+            transition: all 2s ease;
+        }
+        #down_arrow:hover {
+            height: 50px;
+            width: 25px;
+        }
+
+        /* Code window glow */
+        .code-window-glow {
+            transition: border 2.5s ease;
+        }
+        .code-window-glow:hover {
+            border-color: rgba(255,255,255,0.6);
+        }
+
+        /* Skill tag hover */
+        .skill-tag-item {
+            transition: all 0.3s ease;
+        }
+        .skill-tag-item:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: rgba(255,255,255,0.4);
+            color: white;
+        }
+
+        /* Project card hover */
+        .project-card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .project-card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 16px 56px rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.4);
+        }
+
+        /* Skill category hover */
+        .skill-cat-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .skill-cat-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 16px 56px rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.4);
+        }
+
+        /* Cat terminal hover */
+        #cat-terminal:hover {
+            border-color: white;
+            transition: border 2s ease;
+        }
+
+        /* Quote div hover */
+        #quote-div:hover {
+            border-color: rgba(255,255,255,0.47);
+            transition: border 1s ease;
+        }
+
+        /* Contact hover */
+        #contact-form-wrap:hover {
+            border-color: rgba(255,255,255,0.4);
+            transition: border 0.5s ease;
+        }
+
+        /* Fixed bottom bar */
+        #fixed-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 50;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(4px);
+        }
+
+        /* project link hover */
+        .proj-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            padding: 10px 16px;
+            color: rgba(255,255,255,0.8);
+            font-size: 13px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .proj-link:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.5);
+            color: white;
+        }
+
+        .contact-icon-hover {
+            filter: brightness(60%);
+            transition: filter 1s ease;
+        }
+        .contact-icon-hover:hover {
+            filter: brightness(80%);
+        }
+
+        /* Button hover */
+        .cv-btn {
+            color: black;
+            background-color: white;
+            border: 2px solid white;
+            transition: all 1.5s ease;
+        }
+        .cv-btn:hover {
+            background-color: black;
+            color: white;
+        }
+        .cv-btn a { color: inherit; text-decoration: none; }
+
+        /* Submit btn */
+        #submit-btn {
+            background-color: white;
+            color: black;
+            border: 2px solid white;
+            transition: all 1.5s ease;
+        }
+        #submit-btn:hover {
+            background-color: black;
+            color: white;
+            border-color: rgba(128,128,128,0.5);
+        }
+
+        a { text-decoration: none; color: rgb(93,91,91); }
+        a:hover { color: white; transition: color 1s ease; }
+
+        /* First name size */
+        .first-name-text {
+            font-size: clamp(3rem, 12vw, 9.375rem);
+            line-height: 1;
+            letter-spacing: 4px;
+        }
+        .last-name-text {
+            font-size: clamp(2.4rem, 9.5vw, 7.44rem);
+            line-height: 1;
+            letter-spacing: 1px;
+        }
+
+        @media (min-width: 1024px) {
+            .first-name-text { font-size: clamp(5rem, 10vw, 9.375rem); }
+            .last-name-text { font-size: clamp(4rem, 8vw, 7.44rem); }
+        }
+    </style>
 </head>
 
-<body>
-    <div id="header">
-        <div id="header-left">
-            <div id="hello">
-                <p>Hello, I'm</p>
+<body class="bg-black text-white">
+
+    <!-- ===================== HEADER ===================== -->
+    <header class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+        <!-- Hero Left -->
+        <div class="flex flex-col items-center text-center pt-1 sm:pt-2 lg:pt-2">
+            <p class="text-white/60 text-sm mb-20 tracking-wide font-syne">Hello, I'm</p>
+
+            <p class="text-white/90 tracking-[0.3em] text-xs uppercase font-saira mb-1">THE</p>
+
+            <div id="name-wrapper" class="cursor-pointer mb-2">
+                <h1 class="first-name-text font-fjalla text-white leading-none tracking-wider font-bold">SAATHVIK</h1>
+                <h1 class="last-name-text font-fjalla text-white leading-none tracking-wide font-bold">KELLAMPALLI</h1>
             </div>
 
-            <div id = "the">
-                <h1>THE</h1>
+            <h2 class="text-white/70 tracking-[0.5em] text-[10px] sm:text-xs uppercase font-saira my-3 sm:my-4">A Undergraduate at IITJ x LST</h2>
+
+            <p class="text-white/70 text-base sm:text-lg max-w-md sm:max-w-xl font-bitcount mt-12 mb-6 px-2">
+                Building strong foundations in technology to shape a smarter future.
+            </p>
+
+            <button class="cv-btn w-36 sm:w-40 h-12 rounded-xl font-syne font-semibold cursor-pointer mb-8">
+                <a href="/Assets/MyResume.pdf">Download CV</a>
+            </button>
+
+            <!-- Socials -->
+            <div class="flex gap-8 sm:gap-10 mb-10">
+                <a href="https://github.com/broskell" class="contact-icon-hover">
+                    <img src="/Assets/github_white_logo.png" alt="GitHub" class="h-10 w-10 rounded-full">
+                </a>
+                <a href="https://www.linkedin.com/in/kellampalli-saathvik-354799360/?originalSubdomain=in" class="contact-icon-hover">
+                    <img src="/Assets/linkedin_logo.png" alt="LinkedIn" class="h-10 w-10" style="filter: brightness(10);">
+                </a>
+                <a href="#contact" class="contact-icon-hover">
+                    <img src="/Assets/mail_logo.png" alt="Email" class="h-10 w-10 bg-white rounded-full">
+                </a>
             </div>
 
-            <div id="name">
-                <h1 id="first-name">SAATHVIK</h1>
-                <h1 id="last-name">KELLAMPALLI</h1>
-            </div>
-
-            <div id="role">
-                <h2>A Undergraduate at IITJ x LST</h2>
-            </div>
-
-            <div id="quotation">
-                <p>Building strong foundations in technology to shape a smarter future.</p>
-            </div>
-
-            <div>
-                <button><a href="/Assets/MyResume.pdf">Download CV</a></button>
-            </div>
-
-            <div id="contacts">
-                <a href="https://github.com/broskell"><img src="/Assets/github_white_logo.png" alt="GitHub"
-                        style="height: 40px; width: 40px; border-radius: 100%;"></a>
-                <a href="https://www.linkedin.com/in/kellampalli-saathvik-354799360/?originalSubdomain=in"><img
-                        src="/Assets/linkedin_logo.png" id="linkedin"
-                        style="height: 40px; width: 40px; filter: brightness(10);"></a>
-                <a href="/cdn-cgi/l/email-protection#e0938181948896898bce8b90a0878d81898cce838f8d"><img src="/Assets/mail_logo.png" id="mail"
-                        style="height: 40px; width: 40px; background-color: white; border-radius: 100%;"></a>
+            <!-- Down arrow -->
+            <div class="mb-10 sm:mb-16">
+                <img id="down_arrow" src="/Assets/down_arrow.png" alt="Scroll Down" class="h-5 w-5 mx-auto opacity-70">
             </div>
         </div>
 
-        <div style="text-align: center;">
-        <img id="down_arrow" src="/Assets/down_arrow.png" alt="Scroll Down">
-        </div>
-
-        <div id="header-right">
-            <div class="code-window">
-                <div class="code-header">
-                    <span class="code-dot dot-red"></span>
-                    <span class="code-dot dot-yellow"></span>
-                    <span class="code-dot dot-green"></span>
-                    <span class="code-title">script.js</span>
+        <!-- Code Window -->
+        <div class="flex justify-center">
+            <div class="code-window-glow w-full max-w-2xl bg-[rgba(30,30,30,0.8)] border-2 border-white/20 rounded-2xl p-5 shadow-2xl mb-24 sm:mb-32 mx-2 sm:mx-4 lg:mx-20">
+                <!-- Window chrome -->
+                <div class="flex items-center gap-2 mb-5">
+                    <span class="w-3 h-3 rounded-full bg-red-400"></span>
+                    <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
+                    <span class="w-3 h-3 rounded-full bg-green-400"></span>
+                    <span class="ml-4 text-white/50 text-sm font-space">script.js</span>
                 </div>
-                
-                <pre class="code-content">
-<span class="code-const">const</span> profile = {
-    <span class="code-property">name</span>: <span class="code-string">'Saathvik Kellampalli'</span>,
-    <span class="code-property">title</span>: <span class="code-string">'Student | Tech Enthusiast'</span>,
-    <span class="code-property">skills</span>: [
-        <span class="code-string">'Python'</span>, <span class="code-string">'JavaScript'</span>, <span class="code-string">'HTML/CSS'</span>,
-        <span class="code-string">'Linux'</span>, <span class="code-string">'Git'</span>, <span class="code-string">'Adobe Photoshop'</span>
+                <!-- Code content -->
+                <pre class="bg-black/60 rounded-lg p-4 sm:p-5 font-space text-xs sm:text-sm leading-relaxed text-gray-400 overflow-x-auto whitespace-pre-wrap break-words">
+<span class="text-gray-200">const</span> profile = {
+    <span class="text-gray-400">name</span>: <span class="text-gray-300">'Saathvik Kellampalli'</span>,
+    <span class="text-gray-400">title</span>: <span class="text-gray-300">'Student | Tech Enthusiast'</span>,
+    <span class="text-gray-400">skills</span>: [
+        <span class="text-gray-300">'Python'</span>, <span class="text-gray-300">'JavaScript/HTML/CSS'</span>, <span class="text-gray-300">'TailwindCSS'</span>,
+        <span class="text-gray-300">'Linux'</span>, <span class="text-gray-300">'PostgreSQL'</span>, <span class="text-gray-300">'Excel'</span>
     ],
-    <span class="code-property">hardWorker</span>: <span class="code-keyword">true</span>,
-    <span class="code-property">quickLearner</span>: <span class="code-keyword">true</span>,
-    <span class="code-property">problemSolver</span>: <span class="code-keyword">true</span>,
-    <span class="code-property">hireable</span>: <span class="code-function">function</span>() {
-        <span class="code-keyword">return</span> (
-            <span class="code-keyword">this</span>.hardWorker &&
-            <span class="code-keyword">this</span>.problemSolver &&
-            <span class="code-keyword">this</span>.skills.length >= <span class="code-number">5</span>
+    <span class="text-gray-400">hardWorker</span>: <span class="text-white">true</span>,
+    <span class="text-gray-400">quickLearner</span>: <span class="text-white">true</span>,
+    <span class="text-gray-400">problemSolver</span>: <span class="text-white">true</span>,
+    <span class="text-gray-400">hireable</span>: <span class="text-gray-200">function</span>() {
+        <span class="text-white">return</span> (
+            <span class="text-white">this</span>.hardWorker &&
+            <span class="text-white">this</span>.problemSolver &&
+            <span class="text-white">this</span>.skills.length >= <span class="text-gray-400">5</span>
         );
     }
-};
-                </pre>
+};</pre>
             </div>
         </div>
-    </div>
+    </header>
 
-    <div id="about">
-        <div id="edu_int">
-            <p>ABOUT ME</p>
-            <h1>Education & Interests</h1>
-            <p>Exploring the world of algorithms, open-source systems, and web technologies, I'm building the skills</p>
-            <p>to shape intelligent solutions for tomorrow's digital landscape.</p>
-        </div>
+    <!-- ===================== ABOUT ===================== -->
+    <main class="text-white/60">
 
-        <div id="cat">
-            <div id="cat-cmd">
-                <h3>$ cat education.txt</h3>
+        <!-- Education & Interests Header -->
+        <section class="flex flex-col items-center text-center mb-16 sm:mb-20 px-4">
+            <p class="text-white/60 text-xs tracking-[0.2em] uppercase mb-3 font-syne">ABOUT ME</p>
+            <h2 class="text-white text-3xl sm:text-4xl lg:text-5xl font-fjalla mb-4">Education &amp; Interests</h2>
+            <p class="text-white/60 text-base sm:text-lg max-w-2xl leading-relaxed">
+                Exploring the world of algorithms, open-source systems, and web technologies, I'm building the skills
+                to shape intelligent solutions for tomorrow's digital landscape.
+            </p>
+        </section>
+
+        <!-- Education Terminal -->
+        <section id="cat-terminal" class="mx-4 sm:mx-8 lg:mx-36 mb-32 sm:mb-48 border-2 border-white/10 rounded-none font-space" style="min-height:180px;">
+            <div class="bg-white text-black flex items-center px-3 h-14">
+                <h3 class="text-sm sm:text-base font-bold"><span class="text-2xl">$ </span>cat education.txt</h3>
             </div>
-            <div id="cat-content">
-                <ul>
-                    <li>Indian Institute of Technology, Jodhpur      <span style="padding: 0px 60px 0px 78px;">BS in Applied AI & DS</span>     2025 - 2029</li>
-                    <li>LeapStart School of Technology, Hyderabad    <span style="padding: 0px 60px 0px 60px;">Experiential Learning</span>     2025 - 2029</li>
+            <div class="p-4 sm:p-6 text-white/90 text-xs sm:text-sm leading-loose">
+                <ul class="space-y-3">
+                    <li class="flex flex-col sm:flex-row sm:gap-8 lg:gap-16">
+                        <span class="font-bold text-white">Indian Institute of Technology, Jodhpur</span>
+                        <span class="text-white/70 sm:ml-auto">BS in Applied AI &amp; DS</span>
+                        <span class="text-white/50">2025 – 2029</span>
+                    </li>
+                    <li class="flex flex-col sm:flex-row sm:gap-8 lg:gap-16">
+                        <span class="font-bold text-white">LeapStart School of Technology, Hyderabad</span>
+                        <span class="text-white/70 sm:ml-auto">Experiential Learning</span>
+                        <span class="text-white/50">2025 – 2029</span>
+                    </li>
                 </ul>
             </div>
-        </div>
+        </section>
 
-        <div id="timeline-section">
-            <div id="timeline-header">
-                <p>MY JOURNEY</p>
-                <h1>The Story So Far</h1>
-                <p>Building strong technical foundations through hands-on, project-based learning</p>
+        <!-- ===================== TIMELINE ===================== -->
+        <section class="px-4 sm:px-8 lg:px-16 mb-32 sm:mb-40">
+            <div class="text-center mb-16 sm:mb-20">
+                <p class="text-white/60 text-xs tracking-[0.2em] uppercase mb-3 font-syne">MY JOURNEY</p>
+                <h2 class="text-white text-3xl sm:text-4xl lg:text-5xl font-fjalla mb-4">The Story So Far</h2>
+                <p class="text-white/60 text-base sm:text-lg">Building strong technical foundations through hands-on, project-based learning</p>
             </div>
 
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-date">
-                        <span class="month">Jun - Aug</span>
-                        <span class="year">2024</span>
+            <div class="timeline-line max-w-5xl mx-auto py-8">
+
+                <!-- Timeline Item 1 -->
+                <div class="flex flex-col sm:flex-row mb-12 sm:mb-16 relative">
+                    <div class="timeline-dot sm:w-40 sm:text-right sm:pr-10 flex-shrink-0 relative mb-4 sm:mb-0">
+                        <span class="block text-white font-bold text-base">Jun – Aug</span>
+                        <span class="block text-white/50 text-sm">2024</span>
                     </div>
-                    <div class="timeline-content">
-                        <h3>🎓 Pre-College Preparation</h3>
-                        <p class="timeline-desc">Gap between intermediate second year and college joining – explored tech through online certifications</p>
-                        <ul class="timeline-details">
-                            <li>Completed Udemy and Google certifications to build foundational tech skills</li>
-                            <li>Sparked interest in AI and Data science</li>
-                            <li>Self-paced learning to prepare for college-level coursework</li>
+                    <div class="timeline-content-hover sm:ml-10 flex-1 bg-white/5 border-2 border-white/15 rounded-2xl p-6 sm:p-7">
+                        <h3 class="text-white text-xl sm:text-2xl font-syne font-bold mb-3">🎓 Pre-College Preparation</h3>
+                        <p class="text-white/70 text-sm sm:text-base italic mb-4">Gap between intermediate second year and college joining – explored tech through online certifications</p>
+                        <ul class="space-y-2 text-white/65 text-sm">
+                            <li class="pl-5 relative before:content-['▹'] before:absolute before:left-0 before:text-gold/70 before:font-bold">Completed Udemy and Google certifications to build foundational tech skills</li>
+                            <li class="pl-5 relative before:content-['▹'] before:absolute before:left-0 before:text-gold/70 before:font-bold">Sparked interest in AI and Data science</li>
+                            <li class="pl-5 relative before:content-['▹'] before:absolute before:left-0 before:text-gold/70 before:font-bold">Self-paced learning to prepare for college-level coursework</li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-date">
-                        <span class="month">Sep - Dec</span>
-                        <span class="year">2024</span>
+                <!-- Timeline Item 2 -->
+                <div class="flex flex-col sm:flex-row mb-12 sm:mb-16 relative">
+                    <div class="timeline-dot sm:w-40 sm:text-right sm:pr-10 flex-shrink-0 relative mb-4 sm:mb-0">
+                        <span class="block text-white font-bold text-base">Sep – Dec</span>
+                        <span class="block text-white/50 text-sm">2024</span>
                     </div>
-                    <div class="timeline-content">
-                        <h3>🚀 First Semester Begins</h3>
-                        <p class="timeline-desc">Dual learning journey at IIT Jodhpur and LeapStart School of Technology</p>
-                        
-                        <div class="timeline-split">
-                            <div class="timeline-institution">
-                                <h4>🏛️ IIT Jodhpur</h4>
-                                <ul class="timeline-details">
-                                    <li><strong>Core Skills:</strong> Python, SQL, Data Analysis, Data Cleaning, Prompt Engineering</li>
-                                    <li><strong>Libraries:</strong> NumPy, Pandas, Matplotlib, Scikit-learn</li>
-                                    <li><strong>Tools:</strong> Google Colab, Sheets, Kaggle, KNIME, Orange, Hugging Face</li>
-                                    <li><strong>Projects:</strong> Flashcard learning app, Quick Commerce business analysis</li>
-                                    <li><strong>Achievement:</strong> Completed capstone projects across three subjects</li>
+                    <div class="timeline-content-hover sm:ml-10 flex-1 bg-white/5 border-2 border-white/15 rounded-2xl p-6 sm:p-7">
+                        <h3 class="text-white text-xl sm:text-2xl font-syne font-bold mb-3">🚀 First Semester Begins</h3>
+                        <p class="text-white/70 text-sm sm:text-base italic mb-5">Dual learning journey at IIT Jodhpur and LeapStart School of Technology</p>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5">
+                            <div class="bg-black/30 border border-white/10 rounded-xl p-5">
+                                <h4 class="text-gold/90 font-bold text-base border-b border-white/10 pb-3 mb-4">🏛️ IIT Jodhpur</h4>
+                                <ul class="space-y-2 text-white/65 text-sm">
+                                    <li class="pl-5 relative before:content-['▹'] before:absolute before:left-0 before:text-gold/70 before:font-bold"><strong class="text-white/90">Core Skills:</strong> Python, SQL, Data Analysis, Data Cleaning, Prompt Engineering</li>
+                                    <li class="pl-5 relative before:content-['▹'] before:absolute before:left-0 before:text-gold/70 before:font-bold"><strong class="text-white/90">Libraries:</strong> NumPy, Pandas, Matplotlib, Scikit-learn</li>
+                                    <li class="pl-5 relative before:content-['▹'] before:absolute before:left-0 before:text-gold/70 before:font-bold"><strong class="text-white/90">Tools:</strong> Google Colab, Sheets, Kaggle, KNIME, Orange, Hugging Face</li>
+                                    <li class="pl-5 relative before:content-['▹'] before:absolute before:left-0 before:text-gold/70 before:font-bold"><strong class="text-white/90">Projects:</strong> Flashcard learning app, Quick Commerce business analysis</li>
+                                    <li class="pl-5 relative before:content-['▹'] before:absolute before:left-0 before:text-gold/70 before:font-bold"><strong class="text-white/90">Achievement:</strong> Completed capstone projects across three subjects</li>
                                 </ul>
                             </div>
-
-                            <div class="timeline-institution">
-                                <h4>💻 LeapStart School of Technology</h4>
-                                <ul class="timeline-details">
-                                    <li><strong>Web Dev:</strong> HTML5, CSS3, JavaScript (DOM, events, algorithms)</li>
-                                    <li><strong>Systems:</strong> Linux, Ubuntu, VirtualBox, Networking, Shell Scripting</li>
-                                    <li><strong>DevOps:</strong> Git, GitHub, VS Code, Terminal</li>
-                                    <li><strong>Built:</strong> Web UI replicas, portfolio, and resume websites</li>
+                            <div class="bg-black/30 border border-white/10 rounded-xl p-5">
+                                <h4 class="text-gold/90 font-bold text-base border-b border-white/10 pb-3 mb-4">💻 LeapStart School of Technology</h4>
+                                <ul class="space-y-2 text-white/65 text-sm">
+                                    <li class="pl-5 relative before:content-['▹'] before:absolute before:left-0 before:text-gold/70 before:font-bold"><strong class="text-white/90">Web Dev:</strong> HTML5, CSS3, JavaScript (DOM, events, algorithms)</li>
+                                    <li class="pl-5 relative before:content-['▹'] before:absolute before:left-0 before:text-gold/70 before:font-bold"><strong class="text-white/90">Systems:</strong> Linux, Ubuntu, VirtualBox, Networking, Shell Scripting</li>
+                                    <li class="pl-5 relative before:content-['▹'] before:absolute before:left-0 before:text-gold/70 before:font-bold"><strong class="text-white/90">DevOps:</strong> Git, GitHub, VS Code, Terminal</li>
+                                    <li class="pl-5 relative before:content-['▹'] before:absolute before:left-0 before:text-gold/70 before:font-bold"><strong class="text-white/90">Built:</strong> Web UI replicas, portfolio, and resume websites</li>
                                 </ul>
                             </div>
                         </div>
-                        
-                        <div class="gpa-badge" style="margin-top: 25px;">
-                            <span class="gpa-label">First Semester CGPA</span>
-                            <span class="gpa-score">9.75/10</span>
+
+                        <div class="inline-flex items-center gap-4 bg-gold/10 border border-gold/30 rounded-xl px-5 py-3 mt-2">
+                            <span class="text-gold/90 text-xs tracking-widest uppercase font-syne">First Semester CGPA</span>
+                            <span class="text-gold font-bold text-xl font-space">9.75/10</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-date">
-                        <span class="month">Late Dec</span>
-                        <span class="year">2024</span>
+                <!-- Timeline Item 3 -->
+                <div class="flex flex-col sm:flex-row mb-12 sm:mb-16 relative">
+                    <div class="timeline-dot sm:w-40 sm:text-right sm:pr-10 flex-shrink-0 relative mb-4 sm:mb-0">
+                        <span class="block text-white font-bold text-base">Late Dec</span>
+                        <span class="block text-white/50 text-sm">2024</span>
                     </div>
-                    <div class="timeline-content">
-                        <h3>🛠️ SDLC Workshop</h3>
-                        <p class="timeline-desc"><strong>Mentor:</strong> SaiRam Bingi (PMP®, CBAP®, CSM®, ITIL®, PRINCE 2)</p>
-                        <ul class="timeline-details">
-                            <li>Learned SDLC fundamentals, business case creation, project charter, and FRD</li>
-                            <li><strong>Applied Project:</strong> Rapid Blood Bank Supply Platform (MVP)</li>
-                            <li>Designed FRD and developed working prototype with HTML, CSS, JavaScript, Firebase</li>
+                    <div class="timeline-content-hover sm:ml-10 flex-1 bg-white/5 border-2 border-white/15 rounded-2xl p-6 sm:p-7">
+                        <h3 class="text-white text-xl sm:text-2xl font-syne font-bold mb-3">🛠️ SDLC Workshop</h3>
+                        <p class="text-white/70 text-sm sm:text-base italic mb-4"><strong class="text-white/90">Mentor:</strong> SaiRam Bingi (PMP®, CBAP®, CSM®, ITIL®, PRINCE 2)</p>
+                        <ul class="space-y-2 text-white/65 text-sm">
+                            <li class="pl-5 relative before:content-['▹'] before:absolute before:left-0 before:text-gold/70 before:font-bold">Learned SDLC fundamentals, business case creation, project charter, and FRD</li>
+                            <li class="pl-5 relative before:content-['▹'] before:absolute before:left-0 before:text-gold/70 before:font-bold"><strong class="text-white/90">Applied Project:</strong> Rapid Blood Bank Supply Platform (MVP)</li>
+                            <li class="pl-5 relative before:content-['▹'] before:absolute before:left-0 before:text-gold/70 before:font-bold">Designed FRD and developed working prototype with HTML, CSS, JavaScript, Firebase</li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-date">
-                        <span class="month">Dec - Jan</span>
-                        <span class="year">2024-25</span>
+                <!-- Timeline Item 4 -->
+                <div class="flex flex-col sm:flex-row mb-12 sm:mb-16 relative">
+                    <div class="timeline-dot sm:w-40 sm:text-right sm:pr-10 flex-shrink-0 relative mb-4 sm:mb-0">
+                        <span class="block text-white font-bold text-base">Dec – Jan</span>
+                        <span class="block text-white/50 text-sm">2024-25</span>
                     </div>
-                    <div class="timeline-content">
-                        <h3>🔒 Cybersecurity Tasks</h3>
-                        <p class="timeline-desc">Future Interns - Security Assessment Experience</p>
-                        <ul class="timeline-details">
-                            <li>Vulnerability assessment on OWASP Juice Shop using Burp Suite on Kali Linux</li>
-                            <li>Identified common web vulnerabilities and analyzed attack flows</li>
-                            <li>Documented structured security assessment findings</li>
-                            <li><strong>Secure File Sharing Project:</strong> Built a file encryption system using Python and cryptography libraries for secure file transfer</li>
+                    <div class="timeline-content-hover sm:ml-10 flex-1 bg-white/5 border-2 border-white/15 rounded-2xl p-6 sm:p-7">
+                        <h3 class="text-white text-xl sm:text-2xl font-syne font-bold mb-3">🔒 Cybersecurity Tasks</h3>
+                        <p class="text-white/70 text-sm sm:text-base italic mb-4">Future Interns - Security Assessment Experience</p>
+                        <ul class="space-y-2 text-white/65 text-sm">
+                            <li class="pl-5 relative before:content-['▹'] before:absolute before:left-0 before:text-gold/70 before:font-bold">Vulnerability assessment on OWASP Juice Shop using Burp Suite on Kali Linux</li>
+                            <li class="pl-5 relative before:content-['▹'] before:absolute before:left-0 before:text-gold/70 before:font-bold">Identified common web vulnerabilities and analyzed attack flows</li>
+                            <li class="pl-5 relative before:content-['▹'] before:absolute before:left-0 before:text-gold/70 before:font-bold">Documented structured security assessment findings</li>
+                            <li class="pl-5 relative before:content-['▹'] before:absolute before:left-0 before:text-gold/70 before:font-bold"><strong class="text-white/90">Secure File Sharing Project:</strong> Built a file encryption system using Python and cryptography libraries for secure file transfer</li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-date">
-                        <span class="month">Ongoing</span>
-                        <span class="year">2024-25</span>
+                <!-- Timeline Item 5 -->
+                <div class="flex flex-col sm:flex-row mb-12 sm:mb-16 relative">
+                    <div class="timeline-dot sm:w-40 sm:text-right sm:pr-10 flex-shrink-0 relative mb-4 sm:mb-0">
+                        <span class="block text-white font-bold text-base">Ongoing</span>
+                        <span class="block text-white/50 text-sm">2024-25</span>
                     </div>
-                    <div class="timeline-content">
-                        <h3>💡 Personal Projects</h3>
-                        <ul class="timeline-details">
-                            <li><strong>PlayHub:</strong> Sports facility booking platform for LST with chatbot-assisted slot booking</li>
-                            <li><strong>Honey:</strong> Voice AI study buddy for study plans, focus timers, and task management</li>
-                            <li><strong>Lexis:</strong> Live lecture companion converting recordings into notes, summaries, quizzes, and flashcards</li>
+                    <div class="timeline-content-hover sm:ml-10 flex-1 bg-white/5 border-2 border-white/15 rounded-2xl p-6 sm:p-7">
+                        <h3 class="text-white text-xl sm:text-2xl font-syne font-bold mb-3">💡 Personal Projects</h3>
+                        <ul class="space-y-2 text-white/65 text-sm">
+                            <li class="pl-5 relative before:content-['▹'] before:absolute before:left-0 before:text-gold/70 before:font-bold"><strong class="text-white/90">PlayHub:</strong> Sports facility booking platform for LST with chatbot-assisted slot booking</li>
+                            <li class="pl-5 relative before:content-['▹'] before:absolute before:left-0 before:text-gold/70 before:font-bold"><strong class="text-white/90">Honey:</strong> Voice AI study buddy for study plans, focus timers, and task management</li>
+                            <li class="pl-5 relative before:content-['▹'] before:absolute before:left-0 before:text-gold/70 before:font-bold"><strong class="text-white/90">Lexis:</strong> Live lecture companion converting recordings into notes, summaries, quizzes, and flashcards</li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-date">
-                        <span class="month">Throughout</span>
-                        <span class="year">Sem 1</span>
+                <!-- Timeline Item 6 - AI Tools -->
+                <div class="flex flex-col sm:flex-row mb-12 sm:mb-16 relative">
+                    <div class="timeline-dot sm:w-40 sm:text-right sm:pr-10 flex-shrink-0 relative mb-4 sm:mb-0">
+                        <span class="block text-white font-bold text-base">Throughout</span>
+                        <span class="block text-white/50 text-sm">Sem 1</span>
                     </div>
-                    <div class="timeline-content">
-                        <h3>🤖 AI Tools & Platforms Explored</h3>
-                        <div class="ai-tools-grid">
-                            <div class="ai-category">
-                                <h5>LLMs & Assistants</h5>
-                                <p>ChatGPT, Claude, Gemini, Perplexity, Grok, DeepSeek, LMArena, YesChat AI, Chat Sutra</p>
+                    <div class="timeline-content-hover sm:ml-10 flex-1 bg-white/5 border-2 border-white/15 rounded-2xl p-6 sm:p-7">
+                        <h3 class="text-white text-xl sm:text-2xl font-syne font-bold mb-4">🤖 AI Tools &amp; Platforms Explored</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div class="bg-black/30 border border-white/10 rounded-lg p-4">
+                                <h5 class="text-gold/90 text-xs uppercase tracking-wider font-bold mb-2">LLMs &amp; Assistants</h5>
+                                <p class="text-white/60 text-xs leading-relaxed">ChatGPT, Claude, Gemini, Perplexity, Grok, DeepSeek, LMArena, YesChat AI, Chat Sutra</p>
                             </div>
-                            <div class="ai-category">
-                                <h5>Developer Tools</h5>
-                                <p>Cursor, Antigravity, Windsurf, Loveable, PythonTutor, CodePen, Replit, Bolt</p>
+                            <div class="bg-black/30 border border-white/10 rounded-lg p-4">
+                                <h5 class="text-gold/90 text-xs uppercase tracking-wider font-bold mb-2">Developer Tools</h5>
+                                <p class="text-white/60 text-xs leading-relaxed">Cursor, Antigravity, Windsurf, Loveable, PythonTutor, CodePen, Replit, Bolt</p>
                             </div>
-                            <div class="ai-category">
-                                <h5>Visualization & Math</h5>
-                                <p>Flourish, GeoGebra, CalcPlot3D</p>
+                            <div class="bg-black/30 border border-white/10 rounded-lg p-4">
+                                <h5 class="text-gold/90 text-xs uppercase tracking-wider font-bold mb-2">Visualization &amp; Math</h5>
+                                <p class="text-white/60 text-xs leading-relaxed">Flourish, GeoGebra, CalcPlot3D</p>
                             </div>
-                            <div class="ai-category">
-                                <h5>Creative & Media</h5>
-                                <p>Canva, Midjourney, NapkinAI, VEED, Gamma, Eraser, Suno AI</p>
+                            <div class="bg-black/30 border border-white/10 rounded-lg p-4">
+                                <h5 class="text-gold/90 text-xs uppercase tracking-wider font-bold mb-2">Creative &amp; Media</h5>
+                                <p class="text-white/60 text-xs leading-relaxed">Canva, Midjourney, NapkinAI, VEED, Gamma, Eraser, Suno AI</p>
                             </div>
-                            <div class="ai-category">
-                                <h5>Logic & Workflow</h5>
-                                <p>Flowgorithm, Manas, Prompt Cowboy</p>
+                            <div class="bg-black/30 border border-white/10 rounded-lg p-4 sm:col-span-2 lg:col-span-1">
+                                <h5 class="text-gold/90 text-xs uppercase tracking-wider font-bold mb-2">Logic &amp; Workflow</h5>
+                                <p class="text-white/60 text-xs leading-relaxed">Flowgorithm, Manas, Prompt Cowboy</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="timeline-item timeline-current">
-                    <div class="timeline-date">
-                        <span class="month">Late Jan</span>
-                        <span class="year">2025</span>
+                <!-- Timeline Item 7 - Current -->
+                <div class="flex flex-col sm:flex-row mb-4 relative">
+                    <div class="timeline-dot timeline-dot-gold sm:w-40 sm:text-right sm:pr-10 flex-shrink-0 relative mb-4 sm:mb-0">
+                        <span class="block text-white font-bold text-base">Late Jan</span>
+                        <span class="block text-white/50 text-sm">2025</span>
                     </div>
-                    <div class="timeline-content">
-                        <h3>🎯 Second Semester – In Progress</h3>
-                        <p class="timeline-desc">Advancing to more complex technologies and frameworks</p>
-                        <ul class="timeline-details">
-                            <li><strong>Current Focus:</strong> Advanced JavaScript, jQuery, React, PostgreSQL</li>
-                            <li>Building on first semester foundations with industry-standard tools</li>
-                            <li>Ready to take on more advanced challenges and real-world applications</li>
+                    <div class="timeline-content-hover sm:ml-10 flex-1 bg-white/5 border-2 border-white/15 rounded-2xl p-6 sm:p-7">
+                        <h3 class="text-white text-xl sm:text-2xl font-syne font-bold mb-3">🎯 Second Semester – In Progress</h3>
+                        <p class="text-white/70 text-sm sm:text-base italic mb-4">Advancing to more complex technologies and frameworks</p>
+                        <ul class="space-y-2 text-white/65 text-sm mb-4">
+                            <li class="pl-5 relative before:content-['▹'] before:absolute before:left-0 before:text-gold/70 before:font-bold"><strong class="text-white/90">Current Focus:</strong> Advanced JavaScript, jQuery, TypeScript, ES6, React, PostgreSQL, TailwindCSS</li>
+                            <li class="pl-5 relative before:content-['▹'] before:absolute before:left-0 before:text-gold/70 before:font-bold">Building on first semester foundations with industry-standard tools</li>
+                            <li class="pl-5 relative before:content-['▹'] before:absolute before:left-0 before:text-gold/70 before:font-bold">Ready to take on more advanced challenges and real-world applications</li>
                         </ul>
-                        <div class="current-badge">Currently Learning</div>
+                        <div class="inline-block bg-gold/10 border border-gold/50 text-gold text-xs tracking-widest uppercase font-bold px-4 py-2 rounded-full">Currently Learning</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===================== GITHUB HEATMAP ===================== -->
+        <section class="text-center mb-32 sm:mb-48 px-4">
+            <p class="text-white/60 text-xs tracking-[0.2em] uppercase mb-3 font-syne">OPEN SOURCE</p>
+            <h2 class="text-white text-3xl sm:text-4xl lg:text-5xl font-fjalla mb-8">GitHub Contributions</h2>
+            <div class="flex justify-center">
+                <img src="https://ghchart.rshah.org/broskell" alt="GitHub Contribution Chart"
+                    class="w-full max-w-3xl rounded-xl bg-[#0d1117] p-4 shadow-2xl mx-2">
+            </div>
+            <p class="text-white/50 text-sm mt-4">Live activity from my GitHub profile</p>
+        </section>
+
+        <!-- ===================== SKILLS ===================== -->
+        <section class="px-4 sm:px-8 lg:px-16 mb-32 sm:mb-40" id="skills">
+            <div class="text-center mb-12 sm:mb-16">
+                <p class="text-white/60 text-xs tracking-[0.2em] uppercase mb-3 font-syne">MY LEARNINGS</p>
+                <h2 class="text-white text-3xl sm:text-4xl lg:text-5xl font-fjalla mb-4 leading-tight">
+                    Skills &amp; Technologies<br class="hidden sm:block">I'm Learning
+                </h2>
+                <p class="text-white/60 text-base sm:text-lg max-w-xl mx-auto">
+                    A comprehensive toolkit built through years of hands-on experience and
+                    continuous learning in the ever-evolving tech landscape.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-16 lg:gap-24 max-w-4xl mx-auto">
+                <div class="skill-cat-hover bg-white/5 border-2 border-white/15 rounded-2xl p-7">
+                    <h3 class="text-white text-2xl sm:text-3xl font-syne font-bold mb-5">Languages</h3>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="skill-tag-item bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white/80 text-sm sm:text-base text-center font-syne">Python</div>
+                        <div class="skill-tag-item bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white/80 text-sm sm:text-base text-center font-syne">JavaScript</div>
+                        <div class="skill-tag-item bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white/80 text-sm sm:text-base text-center font-syne">HTML</div>
+                        <div class="skill-tag-item bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white/80 text-sm sm:text-base text-center font-syne">CSS</div>
+                        <div class="skill-tag-item bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white/80 text-sm sm:text-base text-center font-syne">PostgreSQL</div>
+                        <div class="skill-tag-item bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white/80 text-sm sm:text-base text-center font-syne">TailwindCSS</div>
+                        <div class="skill-tag-item bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white/80 text-sm sm:text-base text-center font-syne">Shell Script</div>
+                    </div>
+                </div>
+
+                <div class="skill-cat-hover bg-white/5 border-2 border-white/15 rounded-2xl p-7">
+                    <h3 class="text-white text-2xl sm:text-3xl font-syne font-bold mb-5">Tools &amp; Tech</h3>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="skill-tag-item bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white/80 text-sm sm:text-base text-center font-syne">Linux</div>
+                        <div class="skill-tag-item bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white/80 text-sm sm:text-base text-center font-syne">Ubuntu</div>
+                        <div class="skill-tag-item bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white/80 text-sm sm:text-base text-center font-syne">Git</div>
+                        <div class="skill-tag-item bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white/80 text-sm sm:text-base text-center font-syne">GitHub</div>
+                        <div class="skill-tag-item bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white/80 text-sm sm:text-base text-center font-syne">VS Code</div>
+                        <div class="skill-tag-item bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white/80 text-sm sm:text-base text-center font-syne">NumPy</div>
+                        <div class="skill-tag-item bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white/80 text-sm sm:text-base text-center font-syne">G. Sheets</div>
+                        <div class="skill-tag-item bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white/80 text-sm sm:text-base text-center font-syne">Photoshop</div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div id="github-heatmap">
-            <p>OPEN SOURCE</p>
-            <h1>GitHub Contributions</h1>
-        
-            <img src="https://ghchart.rshah.org/broskell" alt="GitHub Contribution Chart" class="heatmap-img" />
-        
-            <p class="heatmap-caption">Live activity from my GitHub profile</p>
-        </div>
-
-        <div id="skills">
-            <div id="skills-header">
-                <p>MY LEARNINGS</p>
-                <h1 style="margin-bottom: 0px; border-bottom: 0px;">Skills & Technologies</h1>
-                <h1 style="margin-top: 0px; border-top: 0px;">I'm Learning</h1>
-                <p>A comprehensive toolkit built through years of hands-on experience and</p>
-                <p>continuous learning in the ever-evolving tech landscape.</p>
-            </div>
-        </div>
-
-        <div id="skills-grid">
-            <div class="skill-category">
-                <h2>Languages</h2>
-                <div class="skill-items">
-                    <div class="skill-tag">Python</div>
-                    <div class="skill-tag">JavaScript</div>
-                    <div class="skill-tag">HTML</div>
-                    <div class="skill-tag">CSS</div>
-                    <div class="skill-tag">SQL</div>
-                    <div class="skill-tag">Shell Scripting</div>
-                </div>
+        <!-- ===================== PROJECTS ===================== -->
+        <section class="px-4 sm:px-8 lg:px-16 mb-32 sm:mb-40" id="projects">
+            <div class="text-center mb-12 sm:mb-16">
+                <p class="text-white/60 text-xs tracking-[0.2em] uppercase mb-3 font-syne">MY WORK</p>
+                <h2 class="text-white text-3xl sm:text-4xl lg:text-5xl font-fjalla mb-4">Featured Projects</h2>
+                <p class="text-white/60 text-base sm:text-lg max-w-xl mx-auto">
+                    A showcase of applications I've built using modern technologies and hands-on learning experiences.
+                </p>
             </div>
 
-            <div class="skill-category">
-                <h2>Tools & Tech</h2>
-                <div class="skill-items">
-                    <div class="skill-tag">Linux</div>
-                    <div class="skill-tag">Ubuntu</div>
-                    <div class="skill-tag">Git</div>
-                    <div class="skill-tag">GitHub</div>
-                    <div class="skill-tag">VS Code</div>
-                    <div class="skill-tag">Google Sheets</div>
-                    <div class="skill-tag">Numpy</div>
-                    <div class="skill-tag">Adobe Photoshop</div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 max-w-6xl mx-auto">
+
+                <!-- Project 1 -->
+                <div class="project-card-hover bg-white/5 border-2 border-white/15 rounded-2xl overflow-hidden">
+                    <div class="bg-[rgba(20,20,20,0.8)]">
+                        <img src="/Assets/honey_preview.png" alt="Honey Voice AI Buddy"
+                            class="w-full aspect-video object-contain border-b border-white/10">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-white text-xl sm:text-2xl font-syne font-bold mb-3">Honey - Voice AI Study Buddy</h3>
+                        <p class="text-white/60 text-sm leading-relaxed mb-4">
+                            An interactive voice-powered AI assistant built for students. Features speech-to-text,
+                            text-to-speech capabilities, and intelligent responses powered by Groq's LLaMA model.
+                            Helps with study sessions through natural conversation.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="bg-white/8 border border-white/15 rounded px-3 py-1.5 text-white/70 text-xs font-space">HTML</span>
+                            <span class="bg-white/8 border border-white/15 rounded px-3 py-1.5 text-white/70 text-xs font-space">CSS</span>
+                            <span class="bg-white/8 border border-white/15 rounded px-3 py-1.5 text-white/70 text-xs font-space">JavaScript</span>
+                            <span class="bg-white/8 border border-white/15 rounded px-3 py-1.5 text-white/70 text-xs font-space">Node.js</span>
+                            <span class="bg-white/8 border border-white/15 rounded px-3 py-1.5 text-white/70 text-xs font-space">Express</span>
+                            <span class="bg-white/8 border border-white/15 rounded px-3 py-1.5 text-white/70 text-xs font-space">Web Speech API</span>
+                            <span class="bg-white/8 border border-white/15 rounded px-3 py-1.5 text-white/70 text-xs font-space">Groq API</span>
+                            <span class="bg-white/8 border border-white/15 rounded px-3 py-1.5 text-white/70 text-xs font-space">LLaMA 3.1</span>
+                        </div>
+                        <div class="flex flex-wrap gap-3">
+                            <a href="https://honey-voice-buddy.onrender.com/" target="_blank" class="proj-link">
+                                <img src="/Assets/link-icon.png" alt="" class="w-4 h-4">
+                                Live Demo
+                            </a>
+                            <a href="https://github.com/broskell/honey-voice-agent" target="_blank" class="proj-link">
+                                <img src="/Assets/github_white_logo.png" alt="" class="w-4 h-4">
+                                GitHub Repo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card-hover bg-white/5 border-2 border-white/15 rounded-2xl overflow-hidden">
+                    <div class="bg-[rgba(20,20,20,0.8)]">
+                        <img src="/Assets/playhub_preview.png" alt="PlayHub Sport Booking"
+                            class="w-full aspect-video object-contain border-b border-white/10">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-white text-xl sm:text-2xl font-syne font-bold mb-3">PlayHub - Sport Booking Web App</h3>
+                        <p class="text-white/60 text-sm leading-relaxed mb-4">
+                            A comprehensive sports facility booking platform designed for LST students.
+                            Enables easy scheduling and management of sport courts and facilities.
+                            Features real-time availability, user authentication, and booking management.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="bg-white/8 border border-white/15 rounded px-3 py-1.5 text-white/70 text-xs font-space">HTML</span>
+                            <span class="bg-white/8 border border-white/15 rounded px-3 py-1.5 text-white/70 text-xs font-space">CSS</span>
+                            <span class="bg-white/8 border border-white/15 rounded px-3 py-1.5 text-white/70 text-xs font-space">JavaScript</span>
+                            <span class="bg-white/8 border border-white/15 rounded px-3 py-1.5 text-white/70 text-xs font-space">Firebase</span>
+                            <span class="bg-white/8 border border-white/15 rounded px-3 py-1.5 text-white/70 text-xs font-space">Firestore</span>
+                            <span class="bg-white/8 border border-white/15 rounded px-3 py-1.5 text-white/70 text-xs font-space">Authentication</span>
+                        </div>
+                        <div class="flex flex-wrap gap-3">
+                            <a href="https://playhub-lst.netlify.app/" target="_blank" class="proj-link">
+                                <img src="/Assets/link-icon.png" alt="" class="w-4 h-4">
+                                Live Demo
+                            </a>
+                            <a href="https://github.com/broskell/LeapStart-PlayHub" target="_blank" class="proj-link">
+                                <img src="/Assets/github_white_logo.png" alt="" class="w-4 h-4">
+                                GitHub Repo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card-hover bg-white/5 border-2 border-white/15 rounded-2xl overflow-hidden lg:col-span-2 lg:max-w-2xl lg:mx-auto lg:w-full">
+                    <div class="bg-[rgba(20,20,20,0.8)]">
+                        <img src="/Assets/main_dashboard.png" alt="Lexis AI Study Assistant"
+                            class="w-full aspect-video object-contain border-b border-white/10">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-white text-xl sm:text-2xl font-syne font-bold mb-3">Lexis – AI Study Assistant</h3>
+                        <p class="text-white/60 text-sm leading-relaxed mb-4">
+                            Lexis is a live lecture companion that turns speech into structured study material. It captures
+                            your lecture through the browser microphone, generates a transcript, then uses AI to create
+                            clean notes, concise summaries, mindmaps, MCQ-style quizzes, and flashcards. The app includes
+                            Google sign-in, a modern dashboard, and a lesson-aware Q&amp;A chat powered by Groq.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="bg-white/8 border border-white/15 rounded px-3 py-1.5 text-white/70 text-xs font-space">HTML</span>
+                            <span class="bg-white/8 border border-white/15 rounded px-3 py-1.5 text-white/70 text-xs font-space">CSS</span>
+                            <span class="bg-white/8 border border-white/15 rounded px-3 py-1.5 text-white/70 text-xs font-space">JavaScript</span>
+                            <span class="bg-white/8 border border-white/15 rounded px-3 py-1.5 text-white/70 text-xs font-space">Firebase Auth</span>
+                            <span class="bg-white/8 border border-white/15 rounded px-3 py-1.5 text-white/70 text-xs font-space">Vercel</span>
+                            <span class="bg-white/8 border border-white/15 rounded px-3 py-1.5 text-white/70 text-xs font-space">Web Speech API</span>
+                            <span class="bg-white/8 border border-white/15 rounded px-3 py-1.5 text-white/70 text-xs font-space">Groq API</span>
+                            <span class="bg-white/8 border border-white/15 rounded px-3 py-1.5 text-white/70 text-xs font-space">LLaMA 3.1</span>
+                        </div>
+                        <div class="flex flex-wrap gap-3">
+                            <a href="https://lexis-phi.vercel.app/" target="_blank" class="proj-link">
+                                <img src="/Assets/link-icon.png" alt="" class="w-4 h-4">
+                                Live Demo
+                            </a>
+                            <a href="https://github.com/broskell/Lexis" target="_blank" class="proj-link">
+                                <img src="/Assets/github_white_logo.png" alt="" class="w-4 h-4">
+                                GitHub Repo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===================== QUOTE ===================== -->
+        <section id="quote-div" class="mx-4 sm:mx-8 lg:mx-48 mb-32 sm:mb-40 flex flex-col items-center text-center bg-[rgba(19,19,21,0.5)] border border-gray-500/30 rounded-2xl px-6 sm:px-10 py-8 sm:py-10">
+            <h2 class="text-white text-xl sm:text-2xl font-syne font-bold mb-3">Embracing Emerging Technologies</h2>
+            <p class="text-white/60 text-sm sm:text-base leading-relaxed max-w-2xl">
+                Driven by curiosity and a passion for technology, I actively seek out new knowledge and hands-on
+                experience with AI, open-source systems, and modern web frameworks to solve real-world challenges
+                and create impactful digital solutions.
+            </p>
+        </section>
+
+        <!-- Divider -->
+        <hr class="border-none h-px bg-white/10 mx-0 mb-6">
+
+        <!-- ===================== CONTACT ===================== -->
+        <section class="text-center mb-8 px-4" id="contact">
+            <p class="text-white/60 text-sm mb-2 font-syne">˙⋆✮ Get in touch ✮⋆˙</p>
+            <h2 class="text-white text-3xl sm:text-4xl lg:text-5xl font-fjalla mb-10">Contact Me</h2>
+
+            <div id="contact-form-wrap" class="bg-white/5 border-2 border-white/15 rounded-2xl p-8 sm:p-12 max-w-xl mx-auto mb-12">
+                <div class="space-y-6 text-left">
+                    <div>
+                        <label class="block text-white/60 text-sm mb-2 font-syne" for="r-name">Full name</label>
+                        <input type="text" id="r-name" placeholder="Enter your full name"
+                            class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3.5 text-white/80 text-base placeholder-white/40 focus:outline-none focus:border-white/40 focus:bg-white/15 transition-all duration-300 font-syne">
+                    </div>
+                    <div>
+                        <label class="block text-white/60 text-sm mb-2 font-syne" for="r-mail">Email address</label>
+                        <input type="email" id="r-mail" placeholder="Enter your mail address"
+                            class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3.5 text-white/80 text-base placeholder-white/40 focus:outline-none focus:border-white/40 focus:bg-white/15 transition-all duration-300 font-syne">
+                    </div>
+                    <div>
+                        <label class="block text-white/60 text-sm mb-2 font-syne" for="r-msg">Message</label>
+                        <textarea id="r-msg" placeholder="Tell me about your project" rows="5"
+                            class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3.5 text-white/80 text-base placeholder-white/40 focus:outline-none focus:border-white/40 focus:bg-white/15 transition-all duration-300 resize-vertical font-syne"></textarea>
+                    </div>
+                    <button id="submit-btn" type="button" onclick="submitForm()"
+                        class="w-full py-4 rounded-xl font-syne font-semibold text-lg cursor-pointer">
+                        Submit
+                    </button>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div id="projects">
-            <div id="projects-header">
-                <p>MY WORK</p>
-                <h1>Featured Projects</h1>
-                <p>A showcase of applications I've built using modern technologies</p>
-                <p>and hands-on learning experiences.</p>
-            </div>
-        </div>
+        <!-- Divider -->
+        <hr class="border-none h-px bg-white/10 mx-0 mb-6">
 
-        <div id="projects-grid">
-            <div class="project-card">
-                <div class="project-image-container">
-                    <img src="/Assets/honey_preview.png" alt="Honey Voice AI Buddy" class="project-image">
-                </div>
-                <div class="project-content">
-                    <h2>Honey - Voice AI Study Buddy</h2>
-                    <p class="project-description">
-                        An interactive voice-powered AI assistant built for students. Features speech-to-text, 
-                        text-to-speech capabilities, and intelligent responses powered by Groq's LLaMA model. 
-                        Helps with study sessions through natural conversation.
-                    </p>
-                    <br>
-                    <div class="project-tech">
-                        <span class="tech-tag">HTML</span>
-                        <span class="tech-tag">CSS</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag">Express</span>
-                        <span class="tech-tag">Web Speech API</span>
-                        <span class="tech-tag">Groq API</span>
-                        <span class="tech-tag">LLaMA 3.1</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://honey-voice-buddy.onrender.com/" target="_blank" class="project-link">
-                            <img src="/Assets/link-icon.png" alt="Live Demo">
-                            Live Demo
-                        </a>
-                        <a href="https://github.com/broskell/honey-voice-agent" target="_blank" class="project-link">
-                            <img src="/Assets/github_white_logo.png" alt="GitHub">
-                            GitHub Repo
-                        </a>
-                    </div>
-                </div>
-            </div>
+        <!-- ===================== FOOTER ===================== -->
+        <footer class="flex flex-col justify-center items-center pb-12 gap-5">
+            <img class="w-fit h-[80px] object-cover" src="/Assets/Gemini-Generated-Title.jpeg">
+            <p class="text-white/40 text-sm font-syne">&copy; 2026 Saathvik Kellampalli. All rights reserved.</p>
+        </footer>
 
-            <div class="project-card">
-                <div class="project-image-container">
-                    <img src="/Assets/playhub_preview.png" alt="PlayHub Sport Booking" class="project-image">
-                </div>
-                <div class="project-content">
-                    <h2>PlayHub - Sport Booking Web App</h2>
-                    <p class="project-description">
-                        A comprehensive sports facility booking platform designed for LST students.
-                        Enables easy scheduling and management of sport courts and facilities.
-                        Features real-time availability, user authentication, and booking management.
-                    </p>
-                    <br>
-                    <div class="project-tech">
-                        <span class="tech-tag">HTML</span>
-                        <span class="tech-tag">CSS</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Firebase</span>
-                        <span class="tech-tag">Firestore</span>
-                        <span class="tech-tag">Database</span>
-                        <span class="tech-tag">Authentication</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://playhub-lst.netlify.app/" target="_blank" class="project-link">
-                            <img src="/Assets/link-icon.png" alt="Live Demo">
-                            Live Demo
-                        </a>
-                        <a href="https://github.com/broskell/LeapStart-PlayHub" target="_blank" class="project-link">
-                            <img src="/Assets/github_white_logo.png" alt="GitHub">
-                            GitHub Repo
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="project-card">
-                <div class="project-image-container">
-                    <img src="/Assets/main_dashboard.png" alt="Lexis – AI Study Assistant" class="project-image">
-                </div>
-            
-                <div class="project-content">
-                    <h2>Lexis – AI Study Assistant</h2>
-            
-                    <p class="project-description">
-                        Lexis is a live lecture companion that turns speech into structured study material. It captures
-                        your lecture through the browser microphone, generates a transcript, then uses AI to create
-                        clean notes, concise summaries, mindmaps, MCQ‑style quizzes, and flashcards. The app includes
-                        Google sign‑in, a modern dashboard, and a lesson‑aware Q&amp;A chat powered by Groq.
-                    </p>
-                    <br>
-            
-                    <div class="project-tech">
-                        <span class="tech-tag">HTML</span>
-                        <span class="tech-tag">CSS</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Firebase Auth</span>
-                        <span class="tech-tag">Vercel</span>
-                        <span class="tech-tag">Web Speech API</span>
-                        <span class="tech-tag">Groq API</span>
-                        <span class="tech-tag">LLaMA 3.1</span>
-                    </div>
-            
-                    <div class="project-links">
-                        <a href="https://lexis-phi.vercel.app/" target="_blank" class="project-link">
-                            <img src="/Assets/link-icon.png" alt="Live Demo">
-                            Live Demo
-                        </a>
-                        <a href="https://github.com/broskell/Lexis" target="_blank" class="project-link">
-                            <img src="/Assets/github_white_logo.png" alt="GitHub">
-                            GitHub Repo
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+    </main>
 
-        <div id="quote-div">
-            <h2>Embracing Emerging Technologies</h2>
-            <p>Driven by curiosity and a passion for technology, I actively seek out new knowledge and hands-on
-                experience with AI,</p>
-            <p>open-source systems, and modern web frameworks to solve real-world challenges and create impactful
-                digital solutions.</p>
-        </div>
-
-        <hr class="hr">
-        
-        <div>
-            <p>˙⋆✮ Get in touch ✮⋆˙</p>
-            <h1 style="margin: 0px;">Contact Me</h1>
-        </div>
-
-        <div id="contactMe">
-            <div>
-                <form>
-                    <div class="form-group">
-                        <label for="r-name">Full name</label>
-                        <input type="text" id="r-name" placeholder="Enter your full name" required>
-                    </div>
-        
-                    <div class="form-group">
-                        <label for="r-mail">Email address</label>
-                        <input type="email" id="r-mail" placeholder="Enter your mail address" required>
-                    </div>
-        
-                    <div class="form-group">
-                        <label for="r-msg">Message</label>
-                        <textarea id="r-msg" placeholder="Tell me about your project" required></textarea>
-                    </div>
-        
-                    <button type="button" id="submit-btn" onclick="submitForm()">Submit</button>
-                </form>
-            </div>
-        </div>
-
-        <hr class="hr">
-
-        <div id="footer">
-            <p><img style="width: 18%; margin-bottom: 15px; filter: brightness(1);" src="/Assets/Gemini-Generated-Title.jpeg"> &copy; 2025 Saathvik Kellampalli. All rights reserved.</p>
-        </div>
-    </div>
-    
-    <div id="fixed">
+    <!-- ===================== FIXED BOTTOM BAR ===================== -->
+    <div id="fixed-bar" class="hidden sm:flex justify-evenly items-center h-7 text-white/70 font-space text-xs pb-1">
         <p>^Z - Download CV</p>
         <p>^T - Timeline</p>
         <p>^M - Education</p>
@@ -492,5 +824,34 @@
         <p>^P - Projects</p>
         <p>^C - Contact Me</p>
     </div>
+
+    <script>
+        // Submit form placeholder
+        function submitForm() {
+            const name = document.getElementById('r-name').value;
+            const mail = document.getElementById('r-mail').value;
+            const msg = document.getElementById('r-msg').value;
+            if (!name || !mail || !msg) {
+                alert('Please fill in all fields.');
+                return;
+            }
+            alert('Message sent! I\'ll get back to you soon.');
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey) {
+                switch(e.key.toLowerCase()) {
+                    case 'z': window.open('/Assets/MyResume.pdf'); break;
+                    case 't': document.querySelector('.timeline-line').scrollIntoView({behavior:'smooth'}); break;
+                    case 'm': document.getElementById('cat-terminal').scrollIntoView({behavior:'smooth'}); break;
+                    case 'x': document.getElementById('skills').scrollIntoView({behavior:'smooth'}); break;
+                    case 'p': document.getElementById('projects').scrollIntoView({behavior:'smooth'}); break;
+                    case 'c': document.getElementById('contact').scrollIntoView({behavior:'smooth'}); break;
+                }
+            }
+        });
+    </script>
+
 </body>
 </html>
