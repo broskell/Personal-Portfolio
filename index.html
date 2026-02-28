@@ -303,6 +303,17 @@
             .first-name-text { font-size: clamp(5rem, 10vw, 9.375rem); }
             .last-name-text { font-size: clamp(4rem, 8vw, 7.44rem); }
         }
+        
+        @keyframes scrollLeft {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        @keyframes scrollRight {
+            0%   { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+        .animate-scroll-left  { animation: scrollLeft  18s linear infinite; }
+        .animate-scroll-right { animation: scrollRight 18s linear infinite; }
     </style>
 </head>
 
@@ -601,46 +612,258 @@
         </section>
 
         <!-- ===================== SKILLS ===================== -->
-        <section class="px-4 sm:px-8 lg:px-16 mb-32 sm:mb-40" id="skills">
+        <section class="px-4 sm:px-8 lg:px-16 mb-32 sm:mb-40 overflow-hidden" id="skills">
             <div class="text-center mb-12 sm:mb-16">
                 <p class="text-white/60 text-xs tracking-[0.2em] uppercase mb-3 font-syne">MY LEARNINGS</p>
                 <h2 class="text-white text-3xl sm:text-4xl lg:text-5xl font-fjalla mb-4 leading-tight">
                     Skills &amp; Technologies<br class="hidden sm:block">I'm Learning
                 </h2>
                 <p class="text-white/60 text-base sm:text-lg max-w-xl mx-auto">
-                    A comprehensive toolkit built through years of hands-on experience and
+                    A comprehensive toolkit built through hands-on experience and
                     continuous learning in the ever-evolving tech landscape.
                 </p>
             </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-16 lg:gap-24 max-w-4xl mx-auto">
-                <div class="skill-cat-hover bg-white/5 border-2 border-white/15 rounded-2xl p-7">
-                    <h3 class="text-white text-2xl sm:text-3xl font-syne font-bold mb-5">Languages</h3>
-                    <div class="grid grid-cols-2 gap-3">
-                        <div class="skill-tag-item bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white/80 text-sm sm:text-base text-center font-syne">Python</div>
-                        <div class="skill-tag-item bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white/80 text-sm sm:text-base text-center font-syne">JavaScript</div>
-                        <div class="skill-tag-item bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white/80 text-sm sm:text-base text-center font-syne">HTML</div>
-                        <div class="skill-tag-item bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white/80 text-sm sm:text-base text-center font-syne">CSS</div>
-                        <div class="skill-tag-item bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white/80 text-sm sm:text-base text-center font-syne">PostgreSQL</div>
-                        <div class="skill-tag-item bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white/80 text-sm sm:text-base text-center font-syne">TailwindCSS</div>
-                        <div class="skill-tag-item bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white/80 text-sm sm:text-base text-center font-syne">Shell Script</div>
-                    </div>
-                </div>
-
-                <div class="skill-cat-hover bg-white/5 border-2 border-white/15 rounded-2xl p-7">
-                    <h3 class="text-white text-2xl sm:text-3xl font-syne font-bold mb-5">Tools &amp; Tech</h3>
-                    <div class="grid grid-cols-2 gap-3">
-                        <div class="skill-tag-item bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white/80 text-sm sm:text-base text-center font-syne">Linux</div>
-                        <div class="skill-tag-item bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white/80 text-sm sm:text-base text-center font-syne">Ubuntu</div>
-                        <div class="skill-tag-item bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white/80 text-sm sm:text-base text-center font-syne">Git</div>
-                        <div class="skill-tag-item bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white/80 text-sm sm:text-base text-center font-syne">GitHub</div>
-                        <div class="skill-tag-item bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white/80 text-sm sm:text-base text-center font-syne">VS Code</div>
-                        <div class="skill-tag-item bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white/80 text-sm sm:text-base text-center font-syne">NumPy</div>
-                        <div class="skill-tag-item bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white/80 text-sm sm:text-base text-center font-syne">G. Sheets</div>
-                        <div class="skill-tag-item bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white/80 text-sm sm:text-base text-center font-syne">Photoshop</div>
+        
+            <!-- Languages Row - flows LEFT -->
+            <div class="mb-6">
+                <p class="text-white/40 text-xs tracking-[0.25em] uppercase font-syne mb-4 px-1 flex justify-center">Languages</p>
+                <div class="relative overflow-hidden">
+                    <!-- Fade edges -->
+                    <div class="pointer-events-none absolute left-0 top-0 bottom-0 w-16 sm:w-24 z-10"
+                        style="background: linear-gradient(to right, #000, transparent);"></div>
+                    <div class="pointer-events-none absolute right-0 top-0 bottom-0 w-16 sm:w-24 z-10"
+                        style="background: linear-gradient(to left, #000, transparent);"></div>
+        
+                    <div class="flex gap-3 w-max animate-scroll-left hover:[animation-play-state:paused]">
+                        <!-- Original set -->
+                        <div
+                            class="shrink-0 flex items-center gap-3 bg-white/5 border border-white/15 rounded-xl px-5 py-3 hover:bg-white/10 hover:border-white/30 transition-all duration-300 cursor-default">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+                                class="w-7 h-7" alt="Python">
+                            <span class="text-white/80 font-syne text-sm whitespace-nowrap">Python</span>
+                        </div>
+                        <div
+                            class="shrink-0 flex items-center gap-3 bg-white/5 border border-white/15 rounded-xl px-5 py-3 hover:bg-white/10 hover:border-white/30 transition-all duration-300 cursor-default">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                                class="w-7 h-7 rounded" alt="JavaScript">
+                            <span class="text-white/80 font-syne text-sm whitespace-nowrap">JavaScript</span>
+                        </div>
+                        <div
+                            class="shrink-0 flex items-center gap-3 bg-white/5 border border-white/15 rounded-xl px-5 py-3 hover:bg-white/10 hover:border-white/30 transition-all duration-300 cursor-default">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+                                class="w-7 h-7" alt="HTML">
+                            <span class="text-white/80 font-syne text-sm whitespace-nowrap">HTML5</span>
+                        </div>
+                        <div
+                            class="shrink-0 flex items-center gap-3 bg-white/5 border border-white/15 rounded-xl px-5 py-3 hover:bg-white/10 hover:border-white/30 transition-all duration-300 cursor-default">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="w-7 h-7"
+                                alt="CSS">
+                            <span class="text-white/80 font-syne text-sm whitespace-nowrap">CSS3</span>
+                        </div>
+                        <div
+                            class="shrink-0 flex items-center gap-3 bg-white/5 border border-white/15 rounded-xl px-5 py-3 hover:bg-white/10 hover:border-white/30 transition-all duration-300 cursor-default">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
+                                class="w-7 h-7" alt="PostgreSQL">
+                            <span class="text-white/80 font-syne text-sm whitespace-nowrap">PostgreSQL</span>
+                        </div>
+                        <div
+                            class="shrink-0 flex items-center gap-3 bg-white/5 border border-white/15 rounded-xl px-5 py-3 hover:bg-white/10 hover:border-white/30 transition-all duration-300 cursor-default">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg"
+                                class="w-7 h-7" alt="Tailwind">
+                            <span class="text-white/80 font-syne text-sm whitespace-nowrap">TailwindCSS</span>
+                        </div>
+                        <div
+                            class="shrink-0 flex items-center gap-3 bg-white/5 border border-white/15 rounded-xl px-5 py-3 hover:bg-white/10 hover:border-white/30 transition-all duration-300 cursor-default">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg"
+                                class="w-7 h-7 rounded-full bg-white/10" alt="Shell">
+                            <span class="text-white/80 font-syne text-sm whitespace-nowrap">Shell Script</span>
+                        </div>
+                        <div
+                            class="shrink-0 flex items-center gap-3 bg-white/5 border border-white/15 rounded-xl px-5 py-3 hover:bg-white/10 hover:border-white/30 transition-all duration-300 cursor-default">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+                                class="w-7 h-7" alt="SQL">
+                            <span class="text-white/80 font-syne text-sm whitespace-nowrap">SQL</span>
+                        </div>
+        
+                        <!-- Duplicate set for seamless loop -->
+                        <div
+                            class="shrink-0 flex items-center gap-3 bg-white/5 border border-white/15 rounded-xl px-5 py-3 hover:bg-white/10 hover:border-white/30 transition-all duration-300 cursor-default">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+                                class="w-7 h-7" alt="Python">
+                            <span class="text-white/80 font-syne text-sm whitespace-nowrap">Python</span>
+                        </div>
+                        <div
+                            class="shrink-0 flex items-center gap-3 bg-white/5 border border-white/15 rounded-xl px-5 py-3 hover:bg-white/10 hover:border-white/30 transition-all duration-300 cursor-default">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                                class="w-7 h-7 rounded" alt="JavaScript">
+                            <span class="text-white/80 font-syne text-sm whitespace-nowrap">JavaScript</span>
+                        </div>
+                        <div
+                            class="shrink-0 flex items-center gap-3 bg-white/5 border border-white/15 rounded-xl px-5 py-3 hover:bg-white/10 hover:border-white/30 transition-all duration-300 cursor-default">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+                                class="w-7 h-7" alt="HTML">
+                            <span class="text-white/80 font-syne text-sm whitespace-nowrap">HTML5</span>
+                        </div>
+                        <div
+                            class="shrink-0 flex items-center gap-3 bg-white/5 border border-white/15 rounded-xl px-5 py-3 hover:bg-white/10 hover:border-white/30 transition-all duration-300 cursor-default">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="w-7 h-7"
+                                alt="CSS">
+                            <span class="text-white/80 font-syne text-sm whitespace-nowrap">CSS3</span>
+                        </div>
+                        <div
+                            class="shrink-0 flex items-center gap-3 bg-white/5 border border-white/15 rounded-xl px-5 py-3 hover:bg-white/10 hover:border-white/30 transition-all duration-300 cursor-default">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
+                                class="w-7 h-7" alt="PostgreSQL">
+                            <span class="text-white/80 font-syne text-sm whitespace-nowrap">PostgreSQL</span>
+                        </div>
+                        <div
+                            class="shrink-0 flex items-center gap-3 bg-white/5 border border-white/15 rounded-xl px-5 py-3 hover:bg-white/10 hover:border-white/30 transition-all duration-300 cursor-default">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg"
+                                class="w-7 h-7" alt="Tailwind">
+                            <span class="text-white/80 font-syne text-sm whitespace-nowrap">TailwindCSS</span>
+                        </div>
+                        <div
+                            class="shrink-0 flex items-center gap-3 bg-white/5 border border-white/15 rounded-xl px-5 py-3 hover:bg-white/10 hover:border-white/30 transition-all duration-300 cursor-default">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg"
+                                class="w-7 h-7 rounded-full bg-white/10" alt="Shell">
+                            <span class="text-white/80 font-syne text-sm whitespace-nowrap">Shell Script</span>
+                        </div>
+                        <div
+                            class="shrink-0 flex items-center gap-3 bg-white/5 border border-white/15 rounded-xl px-5 py-3 hover:bg-white/10 hover:border-white/30 transition-all duration-300 cursor-default">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+                                class="w-7 h-7" alt="SQL">
+                            <span class="text-white/80 font-syne text-sm whitespace-nowrap">SQL</span>
+                        </div>
                     </div>
                 </div>
             </div>
+        
+            <!-- Tools Row - flows RIGHT (opposite direction) -->
+            <div>
+                <p class="text-white/40 text-xs tracking-[0.25em] uppercase font-syne mb-4 px-1 flex justify-center">Tools &amp; Tech</p>
+                <div class="relative overflow-hidden">
+                    <!-- Fade edges -->
+                    <div class="pointer-events-none absolute left-0 top-0 bottom-0 w-16 sm:w-24 z-10"
+                        style="background: linear-gradient(to right, #000, transparent);"></div>
+                    <div class="pointer-events-none absolute right-0 top-0 bottom-0 w-16 sm:w-24 z-10"
+                        style="background: linear-gradient(to left, #000, transparent);"></div>
+        
+                    <div class="flex gap-3 w-max animate-scroll-right hover:[animation-play-state:paused]">
+                        <!-- Original set -->
+                        <div
+                            class="shrink-0 flex items-center gap-3 bg-white/5 border border-white/15 rounded-xl px-5 py-3 hover:bg-white/10 hover:border-white/30 transition-all duration-300 cursor-default">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg"
+                                class="w-7 h-7" alt="Linux">
+                            <span class="text-white/80 font-syne text-sm whitespace-nowrap">Linux</span>
+                        </div>
+                        <div
+                            class="shrink-0 flex items-center gap-3 bg-white/5 border border-white/15 rounded-xl px-5 py-3 hover:bg-white/10 hover:border-white/30 transition-all duration-300 cursor-default">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ubuntu/ubuntu-plain.svg"
+                                class="w-7 h-7" alt="Ubuntu">
+                            <span class="text-white/80 font-syne text-sm whitespace-nowrap">Ubuntu</span>
+                        </div>
+                        <div
+                            class="shrink-0 flex items-center gap-3 bg-white/5 border border-white/15 rounded-xl px-5 py-3 hover:bg-white/10 hover:border-white/30 transition-all duration-300 cursor-default">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" class="w-7 h-7"
+                                alt="Git">
+                            <span class="text-white/80 font-syne text-sm whitespace-nowrap">Git</span>
+                        </div>
+                        <div
+                            class="shrink-0 flex items-center gap-3 bg-white/5 border border-white/15 rounded-xl px-5 py-3 hover:bg-white/10 hover:border-white/30 transition-all duration-300 cursor-default">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+                                class="w-7 h-7 rounded-full bg-white" alt="GitHub">
+                            <span class="text-white/80 font-syne text-sm whitespace-nowrap">GitHub</span>
+                        </div>
+                        <div
+                            class="shrink-0 flex items-center gap-3 bg-white/5 border border-white/15 rounded-xl px-5 py-3 hover:bg-white/10 hover:border-white/30 transition-all duration-300 cursor-default">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg"
+                                class="w-7 h-7" alt="VS Code">
+                            <span class="text-white/80 font-syne text-sm whitespace-nowrap">VS Code</span>
+                        </div>
+                        <div
+                            class="shrink-0 flex items-center gap-3 bg-white/5 border border-white/15 rounded-xl px-5 py-3 hover:bg-white/10 hover:border-white/30 transition-all duration-300 cursor-default">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg"
+                                class="w-7 h-7" alt="NumPy">
+                            <span class="text-white/80 font-syne text-sm whitespace-nowrap">NumPy</span>
+                        </div>
+                        <div
+                            class="shrink-0 flex items-center gap-3 bg-white/5 border border-white/15 rounded-xl px-5 py-3 hover:bg-white/10 hover:border-white/30 transition-all duration-300 cursor-default">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-plain.svg"
+                                class="w-7 h-7 rounded" alt="Photoshop">
+                            <span class="text-white/80 font-syne text-sm whitespace-nowrap">Photoshop</span>
+                        </div>
+                        <div
+                            class="shrink-0 flex items-center gap-3 bg-white/5 border border-white/15 rounded-xl px-5 py-3 hover:bg-white/10 hover:border-white/30 transition-all duration-300 cursor-default">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg"
+                                class="w-7 h-7" alt="Google Sheets">
+                            <span class="text-white/80 font-syne text-sm whitespace-nowrap">Google Sheets</span>
+                        </div>
+                        <div
+                            class="shrink-0 flex items-center gap-3 bg-white/5 border border-white/15 rounded-xl px-5 py-3 hover:bg-white/10 hover:border-white/30 transition-all duration-300 cursor-default">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kaggle/kaggle-original.svg"
+                                class="w-7 h-7" alt="Kaggle">
+                            <span class="text-white/80 font-syne text-sm whitespace-nowrap">Kaggle</span>
+                        </div>
+        
+                        <!-- Duplicate set for seamless loop -->
+                        <div
+                            class="shrink-0 flex items-center gap-3 bg-white/5 border border-white/15 rounded-xl px-5 py-3 hover:bg-white/10 hover:border-white/30 transition-all duration-300 cursor-default">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg"
+                                class="w-7 h-7" alt="Linux">
+                            <span class="text-white/80 font-syne text-sm whitespace-nowrap">Linux</span>
+                        </div>
+                        <div
+                            class="shrink-0 flex items-center gap-3 bg-white/5 border border-white/15 rounded-xl px-5 py-3 hover:bg-white/10 hover:border-white/30 transition-all duration-300 cursor-default">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ubuntu/ubuntu-plain.svg"
+                                class="w-7 h-7" alt="Ubuntu">
+                            <span class="text-white/80 font-syne text-sm whitespace-nowrap">Ubuntu</span>
+                        </div>
+                        <div
+                            class="shrink-0 flex items-center gap-3 bg-white/5 border border-white/15 rounded-xl px-5 py-3 hover:bg-white/10 hover:border-white/30 transition-all duration-300 cursor-default">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" class="w-7 h-7"
+                                alt="Git">
+                            <span class="text-white/80 font-syne text-sm whitespace-nowrap">Git</span>
+                        </div>
+                        <div
+                            class="shrink-0 flex items-center gap-3 bg-white/5 border border-white/15 rounded-xl px-5 py-3 hover:bg-white/10 hover:border-white/30 transition-all duration-300 cursor-default">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+                                class="w-7 h-7 rounded-full bg-white" alt="GitHub">
+                            <span class="text-white/80 font-syne text-sm whitespace-nowrap">GitHub</span>
+                        </div>
+                        <div
+                            class="shrink-0 flex items-center gap-3 bg-white/5 border border-white/15 rounded-xl px-5 py-3 hover:bg-white/10 hover:border-white/30 transition-all duration-300 cursor-default">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg"
+                                class="w-7 h-7" alt="VS Code">
+                            <span class="text-white/80 font-syne text-sm whitespace-nowrap">VS Code</span>
+                        </div>
+                        <div
+                            class="shrink-0 flex items-center gap-3 bg-white/5 border border-white/15 rounded-xl px-5 py-3 hover:bg-white/10 hover:border-white/30 transition-all duration-300 cursor-default">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg"
+                                class="w-7 h-7" alt="NumPy">
+                            <span class="text-white/80 font-syne text-sm whitespace-nowrap">NumPy</span>
+                        </div>
+                        <div
+                            class="shrink-0 flex items-center gap-3 bg-white/5 border border-white/15 rounded-xl px-5 py-3 hover:bg-white/10 hover:border-white/30 transition-all duration-300 cursor-default">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-plain.svg"
+                                class="w-7 h-7 rounded" alt="Photoshop">
+                            <span class="text-white/80 font-syne text-sm whitespace-nowrap">Photoshop</span>
+                        </div>
+                        <div
+                            class="shrink-0 flex items-center gap-3 bg-white/5 border border-white/15 rounded-xl px-5 py-3 hover:bg-white/10 hover:border-white/30 transition-all duration-300 cursor-default">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg"
+                                class="w-7 h-7" alt="Google Sheets">
+                            <span class="text-white/80 font-syne text-sm whitespace-nowrap">Google Sheets</span>
+                        </div>
+                        <div
+                            class="shrink-0 flex items-center gap-3 bg-white/5 border border-white/15 rounded-xl px-5 py-3 hover:bg-white/10 hover:border-white/30 transition-all duration-300 cursor-default">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kaggle/kaggle-original.svg"
+                                class="w-7 h-7" alt="Kaggle">
+                            <span class="text-white/80 font-syne text-sm whitespace-nowrap">Kaggle</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
         </section>
 
         <!-- ===================== PROJECTS ===================== -->
